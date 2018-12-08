@@ -15,14 +15,17 @@ namespace WebApiNews.Controllers
         {
             using (var database = new Context())
             {
-                return database.TheNews.ToList();
+                return database.TheNews.OrderBy(d => d.Post).ToList();
             }
         }
 
         // GET: api/News/5
-        public string Get(int id)
+        public News Get(int id)
         {
-            return "value";
+            using (var database = new Context())
+            {
+                return database.TheNews.Where(i => i.Id == id).FirstOrDefault();
+            }
         }
 
         // POST: api/News
