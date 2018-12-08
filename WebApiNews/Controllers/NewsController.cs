@@ -30,6 +30,17 @@ namespace WebApiNews.Controllers
             }
         }
 
+        // GET: api/NewsAll/kword
+        [HttpGet]
+        [Route("api/NewsAll/{kword}")]
+        public List<News> Search(string kword)
+        {
+            using (var database = new Context())
+            {
+                return database.TheNews.OrderByDescending(d => d.Post).Where(t => t.Title.Contains(kword)).ToList();
+            }
+        }
+
         // GET: api/News/5
         [Route("api/News/{id}")]
         public News Get(int id)
