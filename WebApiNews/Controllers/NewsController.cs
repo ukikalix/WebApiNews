@@ -16,7 +16,7 @@ namespace WebApiNews.Controllers
         {
             using (var database = new Context())
             {
-                return database.TheNews.OrderByDescending(d => d.Post).Take(4).ToList();
+                return database.TheNews.OrderByDescending(d => Guid.NewGuid()).Take(3).ToList();
             }
         }
 
