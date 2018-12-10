@@ -19,20 +19,6 @@ namespace WebApiNews
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-            using (var database = new Context())
-            {
-                if (database.TheNews == null)
-                {
-                    List<News> items = Newtonsoft.Json.JsonConvert.DeserializeObject<List<News>>(System.IO.File.ReadAllText(string.Concat(AppDomain.CurrentDomain.BaseDirectory, "data.json")));
-
-                    foreach (News item in items)
-                    {
-                        database.TheNews.Add(item);
-                    }
-                    database.SaveChanges();
-                }
-            }
         }
     }
 }
